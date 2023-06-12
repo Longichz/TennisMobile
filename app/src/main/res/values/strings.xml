@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Mobile Tennis</string>
+    <string name="start">Start</string>
+    <string name="record">Record</string>
+    <string name="exit">Exit</string>
+    <string name="loading">Loading…</string>
+</resources>
