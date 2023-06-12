@@ -4,8 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import xyz.genscode.tennis.data.Storage
 import xyz.genscode.tennis.databinding.ActivityMainMenuBinding
 
 class MainMenuActivity : AppCompatActivity(){
@@ -32,6 +34,26 @@ class MainMenuActivity : AppCompatActivity(){
                 startActivity(gameActivity)
             }, 300)
         }
+
+        //Показываем рекорд
+        b.btRecord.setOnClickListener {
+            hideButtons()
+            b.llRecord.visibility = View.VISIBLE
+
+            b.btBack.setOnClickListener {
+                b.llRecord.visibility = View.INVISIBLE
+                showButtons()
+            }
+
+            //Получаем рекорд
+            val record = Storage(this).getRecord()
+            b.tvScore.text = record
+        }
+
+        //Выод
+        b.btExit.setOnClickListener {
+            finishAffinity()
+        }
     }
 
     override fun onResume() {
@@ -43,17 +65,17 @@ class MainMenuActivity : AppCompatActivity(){
     fun hideButtons(){
         b.llButtons.isEnabled = false;
 
-        b.tvName.animate().alpha(0f).start()
-        b.llButtons.animate().alpha(0f).start()
-        b.llBlack.animate().alpha(0f).setDuration(250).start()
+        b.tvName.visibility = View.INVISIBLE
+        b.llButtons.visibility = View.INVISIBLE
+        b.llBlack.visibility = View.INVISIBLE
     }
 
     //Показать все элементы
     fun showButtons(){
         b.llButtons.isEnabled = true;
 
-        b.tvName.animate().alpha(1f).start()
-        b.llButtons.animate().alpha(1f).start()
-        b.llBlack.animate().alpha(1f).setDuration(250).start()
+        b.tvName.visibility = View.VISIBLE
+        b.llButtons.visibility = View.VISIBLE
+        b.llBlack.visibility = View.VISIBLE
     }
 }

@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
-        android:src="@drawable/court1_1"
+        android:src="@drawable/court"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
-        android:src="@drawable/court1_blur_1"
+        android:src="@drawable/court_blur"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,22 +39,68 @@
         android:text="@string/loading"
         android:textColor="@color/white"
         android:textSize="20sp"
+        tools:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/background" />
 
+    <!--Градиент затемнения-->
+    <View
+        android:id="@+id/blackGradient"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/trans_black_gradient"/>
 
+    <FrameLayout
+        android:id="@+id/container"
+        tools:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/background" />
+
+    <LinearLayout
+        android:id="@+id/racket"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        android:layout_marginBottom="30dp">
+
+        <ImageView
+            android:id="@+id/racketImg"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginHorizontal="30dp"
+            android:rotation="35"
+            android:rotationX="0"
+            android:clickable="false"
+            android:focusable="false"
+            android:src="@drawable/racket"
+            />
+    </LinearLayout>
+
+    <!--Верхняя панель-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#50000000"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible">
+        >
 
         <ImageView
             android:id="@+id/btBack"
@@ -82,51 +128,115 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.5"
+            android:clickable="false"
+            android:fontFamily="@font/allerta"
+            android:text="0:00"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--Градиент затемнения-->
-    <View
-        android:id="@+id/blackGradient"
+    <!--Меню-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llEndLevel"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:visibility="gone"
         tools:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@drawable/trans_black_gradient"/>
-
-
-    <LinearLayout
-        android:id="@+id/racket"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:visibility="gone"
-        tools:visibility="visible"
-        android:layout_marginBottom="30dp">
-
-        <ImageView
-            android:id="@+id/racketImg"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_marginHorizontal="30dp"
-            android:rotation="35"
-            android:rotationX="0"
+        android:background="@drawable/shape"
+        android:padding="20dp">
+        <TextView
+            android:id="@+id/tvEndLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.8"
             android:clickable="false"
-            android:focusable="false"
-            android:src="@drawable/racket2"
-            />
-    </LinearLayout>
+            android:fontFamily="@font/allerta"
+            android:text="@string/your_score"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tvEndLevelScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="1"
+            android:clickable="false"
+            android:fontFamily="@font/allerta"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvEndLevel" />
+
+        <!--Кнопка Restart-->
+        <LinearLayout
+            android:id="@+id/btRestart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvEndLevelScore">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="10dp"
+                android:alpha="0.9"
+                android:clickable="false"
+                android:fontFamily="@font/allerta"
+                android:text="@string/restart"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+        <!--Кнопка Back-->
+        <LinearLayout
+            android:id="@+id/btEndLevelBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btRestart">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:alpha="0.9"
+                android:clickable="false"
+                android:fontFamily="@font/allerta"
+                android:text="@string/back"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
